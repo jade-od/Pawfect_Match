@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Buddy",
+    "birthdate": "2020-06-01",
+    "image": "img/buddy.jpg",
+    "description": "Loves to play fetch and cuddle. In the shelter for 320 days."
+  },
+  {
+    "id": 2,
+    "name": "Luna",
+    "birthdate": "2019-12-15",
+    "image": "img/luna.jpg",
+    "description": "Shy but sweet. Needs a quiet home. In the shelter for 400 days."
+  }
+]
