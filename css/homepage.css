@@ -1,69 +1,283 @@
+/* Import a cute but readable Google font */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+
+/* General Styles */
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: 'Quicksand', Arial, sans-serif;
+    background: #fffaf4 url('https://www.transparenttextures.com/patterns/paw-print.png');
+    color: #442c14;
     margin: 0;
-    background: #fdf6f0;
-    color: #3a2c18;
+    padding: 0;
+    min-height: 100vh;
 }
 
+/* Header */
 header {
-    background: #ffe5b4;
-    padding: 1em 2em;
+    background: linear-gradient(90deg, #ffd6e0 0%, #fff5b7 100%);
+    padding: 1.2em 2.5em;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 0 0 2em 2em;
+    box-shadow: 0 2px 14px #ffd6e07a;
 }
 
-nav a {
-    color: #3a2c18;
-    margin-left: 1.5em;
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: #ff77a9;
+    text-shadow: 0 1px 2px #fff5b7a0;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+}
+
+header nav a {
+    color: #ffa16c;
+    margin-left: 2em;
     text-decoration: none;
     font-weight: bold;
+    font-size: 1.1em;
+    background: #fff8ec;
+    padding: 0.45em 1.2em;
+    border-radius: 2em;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 6px #ffd6e04a;
+}
+
+header nav a:hover {
+    background: #ffd6e0;
+    color: #ea5a86;
+    box-shadow: 0 4px 16px #ffd6e088;
 }
 
 main {
-    max-width: 900px;
-    margin: 2em auto;
-    padding: 1em;
-    background: #fff;
-    border-radius: 1em;
-    box-shadow: 0 2px 10px #f5c16c3b;
+    max-width: 950px;
+    margin: 2.5em auto 2em auto;
+    padding: 1.5em 2em;
+    background: #ffffffc4;
+    border-radius: 2em;
+    box-shadow: 0 2px 14px #ffd6e07a;
+    min-height: 50vh;
 }
 
+main h2 {
+    font-size: 2em;
+    text-align: center;
+    color: #f78991;
+    margin-bottom: 2em;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Pet Cards */
 .pet-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 2em;
+    gap: 2.5em 2em;
     justify-content: center;
+    align-items: stretch;
 }
 
 .pet-card {
-    background: #fff7ea;
-    border-radius: 1em;
-    box-shadow: 0 2px 8px #ffc77429;
-    padding: 1em;
-    width: 220px;
+    background: linear-gradient(160deg, #ffeaea 0%, #f9fbe7 100%);
+    border-radius: 1.7em;
+    box-shadow: 0 2px 10px #ffd6e049;
+    padding: 1.5em 1em 1.2em 1em;
+    width: 235px;
     text-align: center;
-    transition: transform 0.1s;
+    transition: transform 0.15s, box-shadow 0.15s;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
+
 .pet-card:hover {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 4px 14px #ffb73059;
+    transform: translateY(-6px) scale(1.04) rotate(-1deg);
+    box-shadow: 0 6px 28px #ffbdbd90;
+    background: linear-gradient(140deg, #fff5b7 0%, #ffd6e0 100%);
 }
 
 .pet-card img {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
     border-radius: 50%;
-    margin-bottom: 0.5em;
+    margin-bottom: 1em;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 8px #ffd6e062;
+}
+
+.pet-card h3 {
+    margin: 0.4em 0 0.2em 0;
+    font-size: 1.3em;
+    color: #ea5a86;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.pet-card p {
+    font-size: 1em;
+    margin: 0.2em 0 0.4em 0;
+    color: #7d6744;
 }
 
 footer {
     text-align: center;
-    padding: 1em;
-    background: #ffe5b4;
+    padding: 1.2em;
+    background: linear-gradient(90deg, #ffd6e0 0%, #fff5b7 100%);
     margin-top: 3em;
+    font-size: 1.1em;
+    color: #ea5a86;
+    border-radius: 1.5em 1.5em 0 0;
+    box-shadow: 0 -2px 12px #ffd6e079;
+    letter-spacing: 1px;
+}
+
+/* Auth Page Styles */
+.auth-container {
+    max-width: 420px;
+    margin: 2em auto;
+    padding: 2em 2em 2.2em 2em;
+    background: #fff8ec;
+    border-radius: 2em;
+    box-shadow: 0 2px 14px #ffd6e07a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.auth-container h2 {
+    color: #f78991;
+    font-weight: 700;
+    margin-bottom: 1.2em;
+    letter-spacing: 1px;
+}
+
+.auth-container form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.auth-container input,
+.auth-container select {
+    padding: 0.7em 1em;
+    border-radius: 1em;
+    border: 1px solid #ffd6e0;
+    background: #fff;
     font-size: 1em;
-    border-radius: 0 0 1em 1em;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+.auth-container input:focus,
+.auth-container select:focus {
+    border: 1.5px solid #ea5a86;
+    outline: none;
+    box-shadow: 0 0 0 2px #ffd6e048;
+}
+
+.auth-container button {
+    padding: 0.7em 0;
+    background: linear-gradient(90deg, #ff77a9 0%, #ffa16c 100%);
+    color: #fff;
+    border: none;
+    border-radius: 1.2em;
+    font-size: 1.08em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 8px #ffd6e049;
+    cursor: pointer;
+    transition: background 0.18s, box-shadow 0.18s;
+}
+
+.auth-container button:hover {
+    background: linear-gradient(90deg, #ffa16c 0%, #ff77a9 100%);
+    box-shadow: 0 6px 18px #ffd6e092;
+}
+
+#authMsg {
+    text-align: center;
+    color: #ea5a86;
+    font-weight: 600;
+    margin-top: 1em;
+}
+
+/* Pet profile page */
+#petProfile {
+    max-width: 550px;
+    margin: 2.2em auto;
+    background: #fff8ec;
+    border-radius: 2em;
+    box-shadow: 0 2px 14px #ffd6e07a;
+    padding: 2.5em 2em 2em 2em;
+    text-align: center;
+}
+
+#petProfile img {
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 2em;
+    border: 6px solid #ffebf0;
+    margin-bottom: 1.2em;
+    box-shadow: 0 2px 16px #ffd6e048;
+}
+
+#petProfile h2 {
+    font-size: 2.1em;
+    color: #ea5a86;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+}
+
+#petProfile p {
+    font-size: 1.18em;
+    margin-bottom: 0.9em;
+    color: #67513c;
+}
+
+/* Like button */
+#likeBtn {
+    background: linear-gradient(90deg, #ff77a9 0%, #ffa16c 100%);
+    color: #fff;
+    border: none;
+    padding: 0.7em 2.5em;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 2em;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    margin-top: 1em;
+    box-shadow: 0 2px 10px #ffd6e049;
+    letter-spacing: 1px;
+}
+
+#likeBtn:hover {
+    background: linear-gradient(90deg, #ffa16c 0%, #ff77a9 100%);
+    box-shadow: 0 6px 18px #ffd6e092;
+}
+
+/* Responsive Design */
+@media (max-width: 700px) {
+    main, #petProfile {
+        padding: 1em 0.3em;
+    }
+    .pet-list {
+        flex-direction: column;
+        align-items: center;
+    }
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.2em 1em;
+    }
+    .auth-container {
+        padding: 1.1em;
+    }
 }
