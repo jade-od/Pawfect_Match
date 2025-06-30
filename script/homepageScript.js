@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p>${pet.description.split(".")[0]}.</p>
                 `;
                 card.onclick = () => {
-                    window.location.href = `pet.html?id=${pet.id}`;
+                    window.location.href = `pets.html?id=${pet.id}`;
                 };
                 petList.appendChild(card);
             });
