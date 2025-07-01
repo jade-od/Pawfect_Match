@@ -264,6 +264,35 @@ footer {
   box-shadow: 0 6px 18px #ffd6e092;
 }
 
+h3 {
+  margin: 0.4em 0 0.2em 0;
+  font-size: 1.3em;
+  color: #ea5a86;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.info-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5em 2em;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.info-box {
+  background: linear-gradient(160deg, #ffeaea 0%, #f9fbe7 100%);
+  border-radius: 1.7em;
+  box-shadow: 0 2px 10px #ffd6e049;
+  padding: 1.5em 1em 1.2em 1em;
+  width: 400px;
+  text-align: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
 /* Responsive Design */
 @media (max-width: 700px) {
   main,
@@ -281,5 +310,8 @@ footer {
   }
   .auth-container {
     padding: 1.1em;
+  }
+  .info-box {
+    width: 350px;
   }
 }
