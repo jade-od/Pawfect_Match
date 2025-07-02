@@ -1,5 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBq7_eJtK-lHLAifo55UwLGhsT5SKq5LP0",
@@ -8,7 +12,7 @@ const firebaseConfig = {
   storageBucket: "pawfect-match-55596.appspot.com",
   messagingSenderId: "458265739863",
   appId: "1:458265739863:web:432d45d710963266611912",
-  measurementId: "G-MHVQQD7XVR"
+  measurementId: "G-MHVQQD7XVR",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -48,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         <p><strong>Description:</strong> ${pet.Description}</p>
         <button id="likeBtn">Like</button>
         <br><br>
-        <button onclick="window.history.back()">Back</button>
+        <button id="backBtn" onclick="window.history.back()">Back</button>
       </div>
     `;
 
@@ -59,7 +63,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       localStorage.setItem("likedPets", JSON.stringify(liked));
       alert(`${pet.Name} has been added to your favorites!`);
     };
-
   } catch (error) {
     profileDiv.innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
     console.error(error);
