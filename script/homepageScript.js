@@ -4,7 +4,8 @@ import {
   collection,
   getDocs,
   query,
-  orderBy
+  orderBy,
+  limit,
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 // Your Firebase config
@@ -15,7 +16,7 @@ const firebaseConfig = {
   storageBucket: "pawfect-match-55596.appspot.com",
   messagingSenderId: "458265739863",
   appId: "1:458265739863:web:432d45d710963266611912",
-  measurementId: "G-MHVQQD7XVR"
+  measurementId: "G-MHVQQD7XVR",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -26,9 +27,13 @@ document.addEventListener("DOMContentLoaded", async function () {
   petList.innerHTML = "<p>Loading pets...</p>";
 
   try {
-    // Query pets, ordered by daysInShelter DESCENDING
+    // ✅ Query top 3 pets with longest stay
     const petsCol = collection(db, "pets");
-    const petsQuery = query(petsCol, orderBy("daysInShelter", "desc"));
+    const petsQuery = query(
+      petsCol,
+      orderBy("daysInShelter", "desc"),
+      limit(3)
+    );
     const petSnapshot = await getDocs(petsQuery);
 
     if (petSnapshot.empty) {
@@ -37,7 +42,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     petList.innerHTML = "";
-    petSnapshot.forEach(doc => {
+    petSnapshot.forEach((doc) => {
       const pet = doc.data();
       const card = document.createElement("div");
       card.className = "pet-card";
