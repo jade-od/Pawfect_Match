@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       <div style="text-align:center;">
         <img src="${pet.image}" alt="${pet.Name}" style="width:300px; height:300px; border-radius:2em; margin-bottom:1em;">
         <h2>${pet.Name}</h2>
+        <p><strong></strong> ${pet.Species}</p>
         <p><strong>Breed:</strong> ${pet.Breed}</p>
         <p><strong>Age:</strong> ${pet.Age}</p>
         <p><strong>Days in Shelter:</strong> ${pet.daysInShelter}</p>

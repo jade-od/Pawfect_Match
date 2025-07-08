@@ -9,8 +9,7 @@
     <header>
       <h1>
         <a href="homepage.html" style="text-decoration: none; color: #ff77a9"
-          >Pawfect Match</a
-        >
+          >Pawfect Match</a>
       </h1>
       <nav>
         <a href="homepage.html">Home</a>
@@ -25,6 +24,12 @@
       <form id="uploadForm">
         <input type="text" id="petName" placeholder="Pet Name" required /><br />
         <input type="text" id="petBreed" placeholder="Breed" required /><br />
+        <!-- Species dropdown -->
+        <select id="petSpecies" required>
+          <option value="">Select species</option>
+          <option value="Dog">Dog</option>
+          <option value="Cat">Cat</option>
+        </select><br />
         <input type="number" id="petAge" placeholder="Age" required /><br />
         <input
           type="text"
