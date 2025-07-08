@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         <p><strong>Days in Shelter:</strong> ${pet.daysInShelter}</p>
         <p><strong>Temperament:</strong> ${pet.Temperament}</p>
         <p><strong>Description:</strong> ${pet.Description}</p>
+        <p><strong>Contact:</strong> <a href="mailto:${pet.uploader}">${pet.uploader}</a></p>
         <button id="likeBtn">Like</button>
         <br><br>
         <button id="backBtn" onclick="window.history.back()">Back</button>
