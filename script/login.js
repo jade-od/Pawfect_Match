@@ -9,6 +9,8 @@ import {
   doc,
   setDoc,
   getDoc,
+  getDocs,
+  collection,
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 // Firebase config
@@ -29,7 +31,7 @@ const db = getFirestore(app);
 document.getElementById("authForm").onsubmit = async function (e) {
   e.preventDefault();
 
-  const email = document.getElementById("username").value;
+  const email = document.getElementById("username").value.trim().toLowerCase();
   const password = document.getElementById("password").value;
   const userType = document.getElementById("userType").value;
   const mode = document.querySelector('input[name="authMode"]:checked').value;
@@ -48,7 +50,15 @@ document.getElementById("authForm").onsubmit = async function (e) {
       if (userSnap.exists()) {
         const userData = userSnap.data();
 
-        // ✅ Save user type and liked pets to localStorage
+        // ✅ Validate selected role matches Firestore role
+        if (userData.userType !== userType) {
+          alert(
+            `This email is registered as a ${userData.userType}. Please select the correct account type to continue.`
+          );
+          msg.innerText = `Login blocked: incorrect account type selected.`;
+          return;
+        }
+
         localStorage.setItem(
           "user",
           JSON.stringify({ username: email, userType: userData.userType })
@@ -58,7 +68,7 @@ document.getElementById("authForm").onsubmit = async function (e) {
           JSON.stringify(userData.likedPets || [])
         );
       } else {
-        // fallback
+        // Fallback if no Firestore doc exists (shouldn't happen)
         localStorage.setItem(
           "user",
           JSON.stringify({ username: email, userType: "adopter" })
@@ -68,13 +78,35 @@ document.getElementById("authForm").onsubmit = async function (e) {
 
       msg.innerText = "Logged in!";
     } else if (mode === "signup") {
+      // ✅ Check Firestore for existing email first
+      const usersSnap = await getDocs(collection(db, "users"));
+      let matched = null;
+
+      usersSnap.forEach((docSnap) => {
+        const data = docSnap.data();
+        if (data.email && data.email.toLowerCase() === email) {
+          matched = data;
+        }
+      });
+
+      if (matched) {
+        if (matched.userType !== userType) {
+          alert(
+            `This email is already registered as a ${matched.userType}. You cannot register it again as a ${userType}. Please use a different email.`
+          );
+          msg.innerText = `Account conflict: already registered as ${matched.userType}.`;
+          return;
+        }
+        // same userType is okay
+      }
+
+      // ✅ Create Firebase Auth + Firestore user
       const newUser = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
 
-      // ✅ Set user record with empty likedPets
       await setDoc(doc(db, "users", newUser.user.uid), {
         email: email,
         userType: userType,
@@ -94,6 +126,8 @@ document.getElementById("authForm").onsubmit = async function (e) {
       err.code === "auth/wrong-password"
     ) {
       msg.innerText = "Incorrect password for existing account.";
+    } else if (err.code === "auth/email-already-in-use") {
+      msg.innerText = "This email is already in use.";
     } else {
       msg.innerText = "Error: " + err.message;
     }
