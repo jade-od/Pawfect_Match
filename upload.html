@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Upload Pet - Pawfect Match</title>
+  <link rel="stylesheet" href="css/homepage.css" />
+</head>
+<body>
+  <header>
+    <h1><a href="homepage.html" style="text-decoration: none; color: #ff77a9">Pawfect Match</a></h1>
+    <nav>
+      <a href="homepage.html">Home</a>
+      <a href="profile.html">Profile</a>
+      <a href="login.html">Sign In / Register</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Upload a New Pet</h2>
+    <form id="uploadForm">
+      <input type="text" id="petName" placeholder="Pet Name" required /><br>
+      <input type="text" id="petBreed" placeholder="Breed" required /><br>
+      <input type="number" id="petAge" placeholder="Age" required /><br>
+      <input type="text" id="petTemperament" placeholder="Temperament" required /><br>
+      <input type="number" id="petDays" placeholder="Days in Shelter" required /><br>
+      <input type="text" id="petImage" placeholder="Image URL" required /><br>
+      <textarea id="petDescription" placeholder="Description" required></textarea><br>
+      <button type="submit">Upload Pet</button>
+    </form>
+    <div id="uploadMsg"></div>
+  </main>
+  <script type="module" src="script/upload.js"></script>
+</body>
+</html>
