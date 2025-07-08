@@ -3,7 +3,13 @@ import {
   getFirestore,
   doc,
   getDoc,
+  updateDoc,
+  arrayUnion,
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBq7_eJtK-lHLAifo55UwLGhsT5SKq5LP0",
@@ -17,6 +23,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
 document.addEventListener("DOMContentLoaded", async function () {
   const params = new URLSearchParams(window.location.search);
@@ -56,12 +63,37 @@ document.addEventListener("DOMContentLoaded", async function () {
       </div>
     `;
 
-    // Like button functionality (save to localStorage for adopters)
-    document.getElementById("likeBtn").onclick = function () {
+    document.getElementById("likeBtn").onclick = async function () {
+      const userData = JSON.parse(localStorage.getItem("user") || "{}");
+      if (!userData.username) {
+        alert("You must be logged in to like a pet.");
+        return;
+      }
+
+      // Save to localStorage
       let liked = JSON.parse(localStorage.getItem("likedPets") || "[]");
-      if (!liked.includes(id)) liked.push(id);
-      localStorage.setItem("likedPets", JSON.stringify(liked));
-      alert(`${pet.Name} has been added to your favorites!`);
+      if (!liked.includes(id)) {
+        liked.push(id);
+        localStorage.setItem("likedPets", JSON.stringify(liked));
+      }
+
+      // Save to Firestore
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          const userRef = doc(db, "users", user.uid);
+          try {
+            await updateDoc(userRef, {
+              likedPets: arrayUnion(id),
+            });
+            alert(`${pet.Name} has been added to your favorites!`);
+          } catch (err) {
+            console.error("Failed to update Firestore likedPets:", err.message);
+            alert("Saved locally, but Firestore update failed.");
+          }
+        } else {
+          alert("Error: user not authenticated.");
+        }
+      });
     };
   } catch (error) {
     profileDiv.innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;

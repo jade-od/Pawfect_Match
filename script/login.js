@@ -1,4 +1,3 @@
-// login.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
 import {
   getAuth,
@@ -45,14 +44,28 @@ document.getElementById("authForm").onsubmit = async function (e) {
       );
       const userRef = doc(db, "users", userCredential.user.uid);
       const userSnap = await getDoc(userRef);
-      const savedType = userSnap.exists()
-        ? userSnap.data().userType
-        : "adopter";
 
-      localStorage.setItem(
-        "user",
-        JSON.stringify({ username: email, userType: savedType })
-      );
+      if (userSnap.exists()) {
+        const userData = userSnap.data();
+
+        // ✅ Save user type and liked pets to localStorage
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ username: email, userType: userData.userType })
+        );
+        localStorage.setItem(
+          "likedPets",
+          JSON.stringify(userData.likedPets || [])
+        );
+      } else {
+        // fallback
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ username: email, userType: "adopter" })
+        );
+        localStorage.setItem("likedPets", JSON.stringify([]));
+      }
+
       msg.innerText = "Logged in!";
     } else if (mode === "signup") {
       const newUser = await createUserWithEmailAndPassword(
@@ -60,14 +73,19 @@ document.getElementById("authForm").onsubmit = async function (e) {
         email,
         password
       );
+
+      // ✅ Set user record with empty likedPets
       await setDoc(doc(db, "users", newUser.user.uid), {
         email: email,
         userType: userType,
+        likedPets: [],
       });
+
       localStorage.setItem(
         "user",
         JSON.stringify({ username: email, userType })
       );
+      localStorage.setItem("likedPets", JSON.stringify([]));
       msg.innerText = "Account created!";
     }
   } catch (err) {
