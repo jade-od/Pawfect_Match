@@ -24,6 +24,7 @@ document.getElementById('uploadForm').onsubmit = async function (e) {
   const petData = {
     Name: document.getElementById('petName').value,
     Breed: document.getElementById('petBreed').value,
+    Species: document.getElementById('petSpecies').value, // <-- species dropdown
     Age: Number(document.getElementById('petAge').value),
     Temperament: document.getElementById('petTemperament').value,
     daysInShelter: Number(document.getElementById('petDays').value),
