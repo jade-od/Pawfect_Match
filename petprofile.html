@@ -2,29 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Profile - Pawfect Match</title>
+    <title>All Pets - Pawfect Match</title>
     <link rel="stylesheet" href="css/homepage.css" />
   </head>
   <body>
     <header>
       <h1>
-        <a href="homepage.html" style="text-decoration: none; color: #ff77a9"
-          >Pawfect Match</a
-        >
+        <a href="homepage.html" style="text-decoration: none; color: #ff77a9">
+          Pawfect Match
+        </a>
       </h1>
       <nav>
         <a href="homepage.html">Home</a>
-        <a href="petprofile.html">Pets</a>
-        <a href="aboutpage.html">About Page</a>
+        <a href="aboutpage.html">About</a>
+        <a href="profile.html">Profile</a>
         <a href="login.html" id="authLink">Login / Sign Up</a>
       </nav>
     </header>
+
     <main>
-      <h2>Your Profile</h2>
-      <div id="profileContent"></div>
+      <h2>All Pets in the Shelter</h2>
+      <div id="allPets" class="pet-list"></div>
     </main>
-    <script type="module" src="script/profile.js"></script>
+
     <footer>&copy; Jade and Olivia Final Project.</footer>
+
+    <script type="module" src="script/petprofile.js"></script>
     <script type="module" src="script/navbar.js"></script>
   </body>
 </html>
