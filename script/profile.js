@@ -6,6 +6,7 @@ import {
   query,
   where,
   doc,
+  deleteDoc,
   updateDoc,
   arrayRemove,
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
@@ -37,6 +38,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     return;
   }
 
+  // ---- Adopter Profile ----
   if (user.userType === "adopter") {
     profileContent.innerHTML =
       "<h3>Your Favorite Pets</h3><div id='likedPets'></div>";
@@ -77,7 +79,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           alert(`${pet.Name} has been removed from your favorites.`);
           card.remove();
 
-          // Update Firestore
+          // Update Firestore if using auth
           const auth = getAuth();
           onAuthStateChanged(auth, async (firebaseUser) => {
             if (firebaseUser) {
@@ -107,6 +109,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 
+  // ---- Shelter Profile ----
   if (user.userType === "shelter") {
     profileContent.innerHTML = `<h3>Pets You Have Uploaded</h3>
       <button onclick="window.location.href='upload.html'">Upload New Pet</button>
@@ -132,7 +135,27 @@ document.addEventListener("DOMContentLoaded", async function () {
         <h3>${pet.Name}</h3>
         <p>Breed: ${pet.Breed}</p>
         <p>Age: ${pet.Age}</p>
+        <p>Species: ${pet.Species || ""}</p>
+        <button class="adopt-btn" style="margin-top:1em;">Mark as Adopted</button>
       `;
+
+      // Delete button event
+      card.querySelector(".adopt-btn").onclick = async (e) => {
+        e.stopPropagation();
+        if (
+          confirm(
+            `Are you sure you want to mark ${pet.Name} as adopted? This will remove them from the site.`
+          )
+        ) {
+          try {
+            await deleteDoc(doc(db, "pets", docSnap.id));
+            card.remove();
+            // Optionally show a message or refresh list
+          } catch (err) {
+            alert("Failed to remove pet: " + err.message);
+          }
+        }
+      };
 
       card.onclick = () => {
         window.location.href = `pets.html?id=${docSnap.id}`;
