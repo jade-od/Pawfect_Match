@@ -150,7 +150,6 @@ document.addEventListener("DOMContentLoaded", async function () {
           try {
             await deleteDoc(doc(db, "pets", docSnap.id));
             card.remove();
-            // Optionally show a message or refresh list
           } catch (err) {
             alert("Failed to remove pet: " + err.message);
           }
