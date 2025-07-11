@@ -39,7 +39,7 @@ document.getElementById("uploadForm").onsubmit = async function (e) {
     daysInShelter: Number(document.getElementById("petDays").value),
     image: document.getElementById("petImage").value,
     Description: document.getElementById("petDescription").value,
-    uploader: user.username, // ✅ stores shelter's email for contact
+    uploader: user.username,
     timestamp: new Date(), // optional: for sorting later
   };
 

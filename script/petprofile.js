@@ -24,6 +24,9 @@ let allPetsArray = [];
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.getElementById("allPets");
   const speciesFilter = document.getElementById("speciesFilter");
+  const tempermentFilter = document.getElementById("tempermentFilter");
+  const ageFilter = document.getElementById("ageFilter");
+
   container.innerHTML = "<p>Loading pets...</p>";
 
   try {
@@ -35,31 +38,55 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    // Store all pets in array for filtering
     allPetsArray = [];
     snapshot.forEach((doc) => {
       const pet = doc.data();
-      pet._docId = doc.id; // store Firestore doc id for later use
+      pet._docId = doc.id;
       allPetsArray.push(pet);
     });
 
-    // Initial render
     renderPets();
 
-    // Add filter event
     speciesFilter.addEventListener("change", renderPets);
+    tempermentFilter.addEventListener("change", renderPets);
+    ageFilter.addEventListener("change", renderPets);
 
     function renderPets() {
-      const filter = speciesFilter.value;
+      const speciesVal = speciesFilter.value;
+      const tempVal = tempermentFilter.value;
+      const ageVal = ageFilter.value;
+
       container.innerHTML = "";
-      const petsToShow = filter
-        ? allPetsArray.filter((p) => p.Species === filter)
-        : allPetsArray;
-      if (petsToShow.length === 0) {
-        container.innerHTML = "<p>No pets found for this species.</p>";
+
+      const filteredPets = allPetsArray.filter((pet) => {
+        // Filter by species
+        if (speciesVal && pet.Species !== speciesVal) return false;
+
+        // Filter by temperament
+        if (tempVal && !(pet.Temperament && pet.Temperament.includes(tempVal)))
+          return false;
+
+        // Filter by age group
+        if (ageVal) {
+          const age = Number(pet.Age); // assume Age is a number
+          if (
+            (ageVal === "Young" && age > 2) ||
+            (ageVal === "Adult" && (age < 3 || age > 6)) ||
+            (ageVal === "Senior" && age < 7)
+          ) {
+            return false;
+          }
+        }
+
+        return true;
+      });
+
+      if (filteredPets.length === 0) {
+        container.innerHTML = "<p>No pets match your filters.</p>";
         return;
       }
-      petsToShow.forEach((pet) => {
+
+      filteredPets.forEach((pet) => {
         const card = document.createElement("div");
         card.className = "pet-card";
         card.innerHTML = `
