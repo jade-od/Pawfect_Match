@@ -14,7 +14,7 @@ body {
 
 /* Header */
 header {
-  background: linear-gradient(90deg, #ffd6e0 0%, #fff5b7 100%);
+  background: #ffd6e0;
   padding: 1.2em 2.5em;
   display: flex;
   justify-content: space-between;
@@ -38,12 +38,12 @@ header nav {
 }
 
 header nav a {
-  color: #ffa16c;
+  color: #ff77a9;
   margin-left: 2em;
   text-decoration: none;
   font-weight: bold;
   font-size: 1.1em;
-  background: #fff8ec;
+  background: #ffeaea;
   padding: 0.45em 1.2em;
   border-radius: 2em;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
@@ -51,7 +51,7 @@ header nav a {
 }
 
 header nav a:hover {
-  background: #ffd6e0;
+  background: #f7b5c6;
   color: #ea5a86;
   box-shadow: 0 4px 16px #ffd6e088;
 }
@@ -85,7 +85,7 @@ main h2 {
 }
 
 .pet-card {
-  background: linear-gradient(160deg, #ffeaea 0%, #f9fbe7 100%);
+  background: #ffeaea;
   border-radius: 1.7em;
   box-shadow: 0 2px 10px #ffd6e049;
   padding: 1.5em 1em 1.2em 1em;
@@ -98,9 +98,7 @@ main h2 {
 }
 
 .pet-card:hover {
-  transform: translateY(-6px) scale(1.04) rotate(-1deg);
-  box-shadow: 0 6px 28px #ffbdbd90;
-  background: linear-gradient(140deg, #fff5b7 0%, #ffd6e0 100%);
+  background: #ffd6e0;
 }
 
 .pet-card img {
@@ -130,7 +128,7 @@ main h2 {
 footer {
   text-align: center;
   padding: 1.2em;
-  background: linear-gradient(90deg, #ffd6e0 0%, #fff5b7 100%);
+  background: #ffd6e0;
   margin-top: 3em;
   font-size: 1.1em;
   color: #ea5a86;
@@ -185,7 +183,7 @@ footer {
 
 .auth-container button {
   padding: 0.7em 0;
-  background: linear-gradient(90deg, #ff77a9 0%, #ffa16c 100%);
+  background: #ff77a9 0%;
   color: #fff;
   border: none;
   border-radius: 1.2em;
@@ -198,7 +196,7 @@ footer {
 }
 
 .auth-container button:hover {
-  background: linear-gradient(90deg, #ffa16c 0%, #ff77a9 100%);
+  background: #ff77a9;
   box-shadow: 0 6px 18px #ffd6e092;
 }
 
@@ -245,7 +243,7 @@ footer {
 
 /* Like button */
 #likeBtn {
-  background: linear-gradient(90deg, #ff77a9 0%, #ffa16c 100%);
+  background: #ff77a9;
   color: #fff;
   border: none;
   padding: 0.7em 2.5em;
@@ -260,12 +258,12 @@ footer {
 }
 
 #likeBtn:hover {
-  background: linear-gradient(90deg, #ffa16c 0%, #ff77a9 100%);
+  background: #faabc8;
   box-shadow: 0 6px 18px #ffd6e092;
 }
 
 #backBtn {
-  background: linear-gradient(90deg, #ff77a9 0%, #ffa16c 100%);
+  background: #ff77a9;
   color: #fff;
   border: none;
   padding: 0.7em 2.5em;
@@ -279,8 +277,13 @@ footer {
   letter-spacing: 1px;
 }
 
+#backBtn:hover {
+  background: #faabc8;
+  box-shadow: 0 6px 18px #ffd6e092;
+}
+
 .unlike-btn {
-  background: linear-gradient(90deg, #ff77a9 0%, #ffa16c 100%);
+  background: #ff77a9;
   color: #fff;
   border: none;
   padding: 0.7em 2.5em;
@@ -295,7 +298,7 @@ footer {
 }
 
 .unlike-btn:hover {
-  background: linear-gradient(90deg, #ffa16c 0%, #ff77a9 100%);
+  background: #faabc8;
   box-shadow: 0 6px 18px #ffd6e092;
 }
 
@@ -316,7 +319,7 @@ h3 {
 }
 
 .info-box {
-  background: linear-gradient(160deg, #ffeaea 0%, #f9fbe7 100%);
+  background: #ffeaea;
   border-radius: 1.7em;
   box-shadow: 0 2px 10px #ffd6e049;
   padding: 1.5em 1em 1.2em 1em;
