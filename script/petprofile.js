@@ -24,8 +24,10 @@ let allPetsArray = [];
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.getElementById("allPets");
   const speciesFilter = document.getElementById("speciesFilter");
-  const tempermentFilter = document.getElementById("tempermentFilter");
   const ageFilter = document.getElementById("ageFilter");
+  const catsFilter = document.getElementById("catsFilter");
+  const dogsFilter = document.getElementById("dogsFilter");
+  const kidsFilter = document.getElementById("kidsFilter");
 
   container.innerHTML = "<p>Loading pets...</p>";
 
@@ -47,14 +49,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     renderPets();
 
-    speciesFilter.addEventListener("change", renderPets);
-    tempermentFilter.addEventListener("change", renderPets);
-    ageFilter.addEventListener("change", renderPets);
+    [speciesFilter, ageFilter, catsFilter, dogsFilter, kidsFilter].forEach((el) =>
+      el.addEventListener("change", renderPets)
+    );
 
     function renderPets() {
       const speciesVal = speciesFilter.value;
-      const tempVal = tempermentFilter.value;
       const ageVal = ageFilter.value;
+      const catsVal = catsFilter.value;
+      const dogsVal = dogsFilter.value;
+      const kidsVal = kidsFilter.value;
 
       container.innerHTML = "";
 
@@ -62,21 +66,25 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Filter by species
         if (speciesVal && pet.Species !== speciesVal) return false;
 
-        // Filter by temperament
-        if (tempVal && !(pet.Temperament && pet.Temperament.includes(tempVal)))
-          return false;
-
         // Filter by age group
+        const age = Number(pet.Age);
         if (ageVal) {
-          const age = Number(pet.Age); // assume Age is a number
           if (
             (ageVal === "Young" && age > 2) ||
             (ageVal === "Adult" && (age < 3 || age > 6)) ||
             (ageVal === "Senior" && age < 7)
-          ) {
+          )
             return false;
-          }
         }
+
+        // Filter by goodWithCats
+        if (catsVal !== "" && String(pet.goodWithCats) !== catsVal) return false;
+
+        // Filter by goodWithDogs
+        if (dogsVal !== "" && String(pet.goodWithDogs) !== dogsVal) return false;
+
+        // Filter by goodWithKids
+        if (kidsVal !== "" && String(pet.goodWithKids) !== kidsVal) return false;
 
         return true;
       });

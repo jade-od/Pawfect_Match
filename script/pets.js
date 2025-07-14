@@ -56,8 +56,11 @@ document.addEventListener("DOMContentLoaded", async function () {
         <p><strong>Breed:</strong> ${pet.Breed}</p>
         <p><strong>Age:</strong> ${pet.Age}</p>
         <p><strong>Days in Shelter:</strong> ${pet.daysInShelter}</p>
-        <p><strong>Temperament:</strong> ${pet.Temperament}</p>
+        <p><strong>Good with Cats:</strong> ${pet.goodWithCats ? "Yes" : "No"}</p>
+        <p><strong>Good with Dogs:</strong> ${pet.goodWithDogs ? "Yes" : "No"}</p>
+        <p><strong>Good with Kids:</strong> ${pet.goodWithKids ? "Yes" : "No"}</p>
         <p><strong>Description:</strong> ${pet.Description}</p>
+
         <p><strong>Contact:</strong> <a href="mailto:${pet.uploader}">${pet.uploader}</a></p>
         <button id="likeBtn">Like</button>
         <br><br>
