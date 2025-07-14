@@ -38,12 +38,12 @@ header nav {
 }
 
 header nav a {
-  color: #ffa16c;
+  color: #ff77a9;
   margin-left: 2em;
   text-decoration: none;
   font-weight: bold;
   font-size: 1.1em;
-  background: #fff8ec;
+  background: #ffeaea;
   padding: 0.45em 1.2em;
   border-radius: 2em;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
@@ -51,7 +51,7 @@ header nav a {
 }
 
 header nav a:hover {
-  background: #ffd6e0;
+  background: #f7b5c6;
   color: #ea5a86;
   box-shadow: 0 4px 16px #ffd6e088;
 }
@@ -98,8 +98,6 @@ main h2 {
 }
 
 .pet-card:hover {
-  transform: translateY(-6px) scale(1.04) rotate(-1deg);
-  box-shadow: 0 6px 28px #ffbdbd90;
   background: #ffd6e0;
 }
 
