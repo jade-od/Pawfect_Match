@@ -25,6 +25,9 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+//FIREBASE CONFIG DONT TOUCH ME UPWARD
+
+
 document.addEventListener("DOMContentLoaded", async function () {
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");

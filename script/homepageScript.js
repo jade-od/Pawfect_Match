@@ -8,7 +8,7 @@ import {
   limit,
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
-// Your Firebase config
+//FIREBASE CONFIG DONT TOUCH 
 const firebaseConfig = {
   apiKey: "AIzaSyBq7_eJtK-lHLAifo55UwLGhsT5SKq5LP0",
   authDomain: "pawfect-match-55596.firebaseapp.com",
@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   petList.innerHTML = "<p>Loading pets...</p>";
 
   try {
-    // ✅ Query top 3 pets with longest stay
     const petsCol = collection(db, "pets");
     const petsQuery = query(
       petsCol,

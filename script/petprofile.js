@@ -21,6 +21,10 @@ const db = getFirestore(app);
 
 let allPetsArray = [];
 
+
+//FIREBASE CONFIG DONT TOUCH
+
+
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.getElementById("allPets");
   const speciesFilter = document.getElementById("speciesFilter");
@@ -62,11 +66,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       container.innerHTML = "";
 
-      // Filter pets
+      //fiter pets
       let filteredPets = allPetsArray.filter((pet) => {
         if (speciesVal && pet.Species !== speciesVal) return false;
 
-        // Age group filter (change logic if needed)
         const age = Number(pet.Age);
         if (ageVal) {
           if (
@@ -84,7 +87,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         return true;
       });
 
-      // Sort pets by daysInShelter (longest in shelter first)
       filteredPets.sort((a, b) => (b.daysInShelter || 0) - (a.daysInShelter || 0));
 
       if (filteredPets.length === 0) {

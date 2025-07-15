@@ -1,7 +1,5 @@
-/* Import a cute but readable Google font */
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap");
 
-/* General Styles */
 body {
   font-family: "Quicksand", Arial, sans-serif;
   background: #fffaf4
@@ -12,7 +10,6 @@ body {
   min-height: 100vh;
 }
 
-/* Header */
 header {
   background: #ffd6e0;
   padding: 1.2em 2.5em;
@@ -75,7 +72,6 @@ main h2 {
   letter-spacing: 1px;
 }
 
-/* Pet Cards */
 .pet-list {
   display: flex;
   flex-wrap: wrap;
@@ -137,7 +133,6 @@ footer {
   letter-spacing: 1px;
 }
 
-/* Auth Page Styles */
 .auth-container {
   max-width: 420px;
   margin: 2em auto;
@@ -207,7 +202,6 @@ footer {
   margin-top: 1em;
 }
 
-/* Pet profile page */
 #petProfile {
   max-width: 550px;
   margin: 2.2em auto;
@@ -241,7 +235,6 @@ footer {
   color: #67513c;
 }
 
-/* Like button */
 #likeBtn {
   background: #ff77a9;
   color: #fff;
@@ -332,12 +325,11 @@ h3 {
 }
 
 label {
-  color: #ea5a86; /* Soft pink to match theme */
+  color: #ea5a86; 
   font-weight: bold;
   font-size: 1.05em;
 }
 
-/* Responsive Design */
 @media (max-width: 700px) {
   main,
   #petProfile {

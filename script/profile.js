@@ -15,7 +15,7 @@ import {
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 
-// Firebase config
+//FIREBASE CONFIG DONT TOUCH ME
 const firebaseConfig = {
   apiKey: "AIzaSyBq7_eJtK-lHLAifo55UwLGhsT5SKq5LP0",
   authDomain: "pawfect-match-55596.firebaseapp.com",
@@ -28,6 +28,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+//FIREBASE CONFIG DONT TOUCH ME
 
 document.addEventListener("DOMContentLoaded", async function () {
   const profileContent = document.getElementById("profileContent");
@@ -38,7 +39,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     return;
   }
 
-  // ---- Adopter Profile ----
+  // adopter profile 
   if (user.userType === "adopter") {
     profileContent.innerHTML =
       "<h3>Your Favorite Pets</h3><div id='likedPets'></div>";
@@ -73,13 +74,11 @@ document.addEventListener("DOMContentLoaded", async function () {
         unlikeBtn.onclick = (e) => {
           e.stopPropagation();
 
-          // Update localStorage
           const updatedLiked = liked.filter((id) => id !== petDoc.id);
           localStorage.setItem("likedPets", JSON.stringify(updatedLiked));
           alert(`${pet.Name} has been removed from your favorites.`);
           card.remove();
 
-          // Update Firestore if using auth
           const auth = getAuth();
           onAuthStateChanged(auth, async (firebaseUser) => {
             if (firebaseUser) {
@@ -109,7 +108,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 
-  // ---- Shelter Profile ----
   if (user.userType === "shelter") {
     profileContent.innerHTML = `<h3>Pets You Have Uploaded</h3>
       <button onclick="window.location.href='upload.html'">Upload New Pet</button>
@@ -139,7 +137,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         <button class="adopt-btn" style="margin-top:1em;">Mark as Adopted</button>
       `;
 
-      // Delete button event
+      //delete btn 
       card.querySelector(".adopt-btn").onclick = async (e) => {
         e.stopPropagation();
         if (

@@ -1,4 +1,3 @@
-// navbar.js
 document.addEventListener("DOMContentLoaded", () => {
   const authLink = document.getElementById("authLink");
   if (!authLink) return;
@@ -12,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.removeItem("user");
       localStorage.removeItem("likedPets");
       alert("You have been logged out.");
-      window.location.href = "homepage.html"; // or reload() if you prefer
+      window.location.href = "homepage.html"; 
     };
   }
 });

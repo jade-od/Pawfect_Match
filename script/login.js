@@ -13,7 +13,6 @@ import {
   collection,
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
-// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyBq7_eJtK-lHLAifo55UwLGhsT5SKq5LP0",
   authDomain: "pawfect-match-55596.firebaseapp.com",
@@ -27,6 +26,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+
+//FIREBASE CONFIG DONT TOUCH 
+
 
 document.getElementById("authForm").onsubmit = async function (e) {
   e.preventDefault();
@@ -50,7 +52,6 @@ document.getElementById("authForm").onsubmit = async function (e) {
       if (userSnap.exists()) {
         const userData = userSnap.data();
 
-        // ✅ Validate selected role matches Firestore role
         if (userData.userType !== userType) {
           alert(
             `This email is registered as a ${userData.userType}. Please select the correct account type to continue.`
@@ -68,7 +69,6 @@ document.getElementById("authForm").onsubmit = async function (e) {
           JSON.stringify(userData.likedPets || [])
         );
       } else {
-        // Fallback if no Firestore doc exists (shouldn't happen)
         localStorage.setItem(
           "user",
           JSON.stringify({ username: email, userType: "adopter" })
@@ -78,7 +78,6 @@ document.getElementById("authForm").onsubmit = async function (e) {
 
       msg.innerText = "Logged in!";
     } else if (mode === "signup") {
-      // ✅ Check Firestore for existing email first
       const usersSnap = await getDocs(collection(db, "users"));
       let matched = null;
 
@@ -97,10 +96,8 @@ document.getElementById("authForm").onsubmit = async function (e) {
           msg.innerText = `Account conflict: already registered as ${matched.userType}.`;
           return;
         }
-        // same userType is okay
       }
 
-      // ✅ Create Firebase Auth + Firestore user
       const newUser = await createUserWithEmailAndPassword(
         auth,
         email,
