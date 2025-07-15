@@ -62,11 +62,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       container.innerHTML = "";
 
-      const filteredPets = allPetsArray.filter((pet) => {
-        // Filter by species
+      // Filter pets
+      let filteredPets = allPetsArray.filter((pet) => {
         if (speciesVal && pet.Species !== speciesVal) return false;
 
-        // Filter by age group
+        // Age group filter (change logic if needed)
         const age = Number(pet.Age);
         if (ageVal) {
           if (
@@ -77,17 +77,15 @@ document.addEventListener("DOMContentLoaded", async () => {
             return false;
         }
 
-        // Filter by goodWithCats
         if (catsVal !== "" && String(pet.goodWithCats) !== catsVal) return false;
-
-        // Filter by goodWithDogs
         if (dogsVal !== "" && String(pet.goodWithDogs) !== dogsVal) return false;
-
-        // Filter by goodWithKids
         if (kidsVal !== "" && String(pet.goodWithKids) !== kidsVal) return false;
 
         return true;
       });
+
+      // Sort pets by daysInShelter (longest in shelter first)
+      filteredPets.sort((a, b) => (b.daysInShelter || 0) - (a.daysInShelter || 0));
 
       if (filteredPets.length === 0) {
         container.innerHTML = "<p>No pets match your filters.</p>";
@@ -98,6 +96,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         const card = document.createElement("div");
         card.className = "pet-card";
         card.innerHTML = `
+          <div style="color: #e74a4a; font-weight: bold; font-size: 1.12em; margin-bottom: 0.6em;">
+            ${pet.daysInShelter ? `${pet.daysInShelter} days in the shelter` : ''}
+          </div>
           <img src="${pet.image}" alt="${pet.Name}">
           <h3>${pet.Name}</h3>
           <p>Breed: ${pet.Breed}</p>
