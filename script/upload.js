@@ -35,12 +35,16 @@ document.getElementById("uploadForm").onsubmit = async function (e) {
     Breed: document.getElementById("petBreed").value,
     Species: document.getElementById("petSpecies").value,
     Age: Number(document.getElementById("petAge").value),
-    Temperament: document.getElementById("petTemperament").value,
     daysInShelter: Number(document.getElementById("petDays").value),
     image: document.getElementById("petImage").value,
     Description: document.getElementById("petDescription").value,
     uploader: user.username,
-    timestamp: new Date(), // optional: for sorting later
+    timestamp: new Date(),
+
+    // New boolean fields
+    goodWithKids: document.getElementById("goodWithKids").value === "Yes",
+    goodWithDogs: document.getElementById("goodWithDogs").value === "Yes",
+    goodWithCats: document.getElementById("goodWithCats").value === "Yes",
   };
 
   try {
