@@ -41,7 +41,6 @@ document.getElementById("uploadForm").onsubmit = async function (e) {
     uploader: user.username,
     timestamp: new Date(),
 
-    // New boolean fields
     goodWithKids: document.getElementById("goodWithKids").value === "Yes",
     goodWithDogs: document.getElementById("goodWithDogs").value === "Yes",
     goodWithCats: document.getElementById("goodWithCats").value === "Yes",
