@@ -9,7 +9,8 @@
     <header>
       <h1>
         <a href="homepage.html" style="text-decoration: none; color: #ff77a9"
-          >Pawfect Match</a>
+          >Pawfect Match</a
+        >
       </h1>
       <nav>
         <a href="homepage.html">Home</a>
@@ -19,46 +20,81 @@
         <a href="login.html" id="authLink">Login / Sign Up</a>
       </nav>
     </header>
+
     <main>
       <h2>Upload a New Pet</h2>
-      <form id="uploadForm">
-        <input type="text" id="petName" placeholder="Pet Name" required /><br />
-        <input type="text" id="petBreed" placeholder="Breed" required /><br />
+      <form
+        id="uploadForm"
+        style="
+          display: flex;
+          flex-direction: column;
+          gap: 0.7em;
+          font-size: 0.9em;
+          max-width: 400px;
+          margin: 0 auto;
+        "
+      >
+        <input type="text" id="petName" placeholder="Pet Name" required />
+        <input type="text" id="petBreed" placeholder="Breed" required />
+
         <select id="petSpecies" required>
           <option value="">Select species</option>
           <option value="Dog">Dog</option>
           <option value="Cat">Cat</option>
-        </select><br />
-        <input type="number" id="petAge" placeholder="Age" required /><br />
+        </select>
+
         <input
-          type="text"
-          id="petTemperament"
-          placeholder="Temperament"
+          type="number"
+          id="petAge"
+          placeholder="Age (in years)"
           required
-        /><br />
-        
+        />
+
+        <label for="goodWithKids" style="margin-top: 0.5em"
+          >Good with Kids:</label
+        >
+        <select id="goodWithKids" required>
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+
+        <label for="goodWithDogs" style="margin-top: 0.5em"
+          >Good with Dogs:</label
+        >
+        <select id="goodWithDogs" required>
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+
+        <label for="goodWithCats" style="margin-top: 0.5em"
+          >Good with Cats:</label
+        >
+        <select id="goodWithCats" required>
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+
         <input
           type="number"
           id="petDays"
           placeholder="Days in Shelter"
           required
-        /><br />
-        <input
-          type="text"
-          id="petImage"
-          placeholder="Image URL"
-          required
-        /><br />
+        />
+        <input type="text" id="petImage" placeholder="Image URL" required />
         <textarea
           id="petDescription"
           placeholder="Description"
           required
-        ></textarea
-        ><br />
+        ></textarea>
+
         <button type="submit">Upload Pet</button>
       </form>
       <div id="uploadMsg"></div>
     </main>
+
     <script type="module" src="script/upload.js"></script>
   </body>
 </html>
